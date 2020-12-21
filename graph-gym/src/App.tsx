@@ -4,12 +4,14 @@ import './App.css';
 
 import BarChart from './component/BarChart';
 import LineChart from './component/LineChart';
+import PieChart from './component/PieChart';
 
 function App() {
   return (
     <div className="App">
       <BarChart/>
       <LineChart/>
+      <PieChart/>
     </div>
   );
 }
