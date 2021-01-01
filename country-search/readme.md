@@ -50,7 +50,7 @@ Redux를 사용한다면 컴포넌트/객체들의 상태는 이러한 흐름으
 ### Part 3. 요구사항 구현
 > 일단은 하나씩 하자.
 
-#### 1번 & 2번
+`1번 & 2번`
 ```shell
 mkdir country-search //프로젝트 진행할 디렉토리 만들고
 cd country-search //디렉토리 안으로 들어가서
@@ -136,8 +136,21 @@ Error: Cannot find module 'webpack-cli/bin/config-yargs'
 ```
 이런 에러가 떴다. npm-cli의 특정 버전에서 레포 구조가 달라져서 이런 일이 생긴 거였는데, [공식 레포](https://github.com/webpack/webpack-dev-server/issues/2029)에서 해답을 찾고 고칠 수 있었다.
 
-1번과 2번을 해결한 자료는 Commit log "Init webpack-based environment"를 통해 커밋하였다.
+1번과 2번을 해결한 자료의 커밋로그는 `Init webpack-based environment`로, 깃헙에서 확인할 수 있다.
 
+`다음 요구사항들을 충족하기 위한 준비단계`
+
+1번째 준비: 설계 반영 
+
+App.js에 header, article, footer의 구조를 나타내고, article에 SearchBar, Container, Country, Button, ModalBox가 다 잘 Mount된다는 것을 확인하고, css가 동작하는지만 확인 하였다. 
+
+1번째 준비과정을 마치고 `Add skeleton component` 커밋을 남겼다. 
+
+2번째 준비: Redux연동
+
+3번째 준비: Redux-middlware를 통한 네트워크 통신
+
+4번째 준비: 통신을 통해 가져온 값으로 컴포넌트 상태 변경
 
 
 ## 참고자료
