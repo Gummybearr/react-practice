@@ -16,11 +16,14 @@ const SearchBar = (props) => {
     </div>
 }
 
-export default connect(null, (dispatch) => {
+
+const mapDispatchToProps = (dispatch) => {
     return {
         onClick: () => {
             const result = axios.get('https://restcountries.eu/rest/v2/all?fields=alpha2Code;capital;name;region;callingCodes')
-            .then((res)=> (dispatch({type: 'FETCH_DATA', data: res})))
+            .then(res=> dispatch({type: 'FETCH_DATA', payload: res.data}))
         }
     }
-})(SearchBar);
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);
