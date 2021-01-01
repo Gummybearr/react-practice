@@ -2,11 +2,11 @@
 
 나라 정보(코드, 수도, 이름, 대륙, 국가 전화번호)를 GET 으로 가져와 정보를 리스팅 해주는 페이지.
 
-## Server 
+# Server 
 Data URL
 https://restcountries.eu/rest/v2/all?fields=alpha2Code;capital;name;region;callingCodes
  
-## 요구 사항
+# 요구 사항
 1. react, webpack을 베이스로 사용하여 개발
 2. 보일러 플레이트(create-react-app 등)를 사용하지 않아야 함.
 3. 버튼을 누르면 각 필드별 오름차순, 내림차순 정렬이 되어야 함.
@@ -16,14 +16,14 @@ https://restcountries.eu/rest/v2/all?fields=alpha2Code;capital;name;region;calli
 7. 모든 상태(나라 목록, 정렬 상태, 검색어 등)는 데이터 관리 라이브러리(Redux, MobX 등)에 저장되어야 함.
 8. Network 통신은 redux middleware를 통해 되어야 함.
  
-## 추가 요구 사항
+# 추가 요구 사항
 1. 일부만 로딩 후 스크롤 아래로 갈 시 추가 로딩
 2. form 라이브러리(redux-form, formik 등) 사용
 3. cross browsing 적용
 4. 검색 기능 (Rate limiting(debounce, throttle) 적용하여 타이핑 시 바로 검색)
 
-## 어떻게 구현할 것인가
-### Part 1. 요구사항 분석 
+# 어떻게 구현할 것인가
+## Part 1. 요구사항 분석 
 ux에 대한 고민
 사용자가 프로그램을 어떻게 사용할 것인가? 라는 주제로 요구사항에 대한 문의를 한 이후 요구사항을 정확하게 이해할 수 있었다. ux의 흐름은 다음과 같다.
 
@@ -41,16 +41,17 @@ ux에 대한 고민
 
 * 단, 이때 모든 작업은 하나의 페이지에서 일어나야 한다. /list에서 정보를 보고, /search에서 검색을 하고 이런식이 아니다. 
 
-### Part 2. 설계
+## Part 2. 설계
 > 어떻게 해야 redux를 잘 쓸 수 있을까?
 
 Redux를 사용한다면 컴포넌트/객체들의 상태는 이러한 흐름으로 관리가 될 것이다.
 
 
-### Part 3. 요구사항 구현
+## Part 3. 요구사항 구현
 > 일단은 하나씩 하자.
 
-`1번 & 2번`
+### 1번 & 2번
+
 ```shell
 mkdir country-search //프로젝트 진행할 디렉토리 만들고
 cd country-search //디렉토리 안으로 들어가서
@@ -138,22 +139,33 @@ Error: Cannot find module 'webpack-cli/bin/config-yargs'
 
 1번과 2번을 해결한 자료의 커밋로그는 `Init webpack-based environment`로, 깃헙에서 확인할 수 있다.
 
-`다음 요구사항들을 충족하기 위한 준비단계`
 
-1번째 준비: 설계 반영 
+### 다음 요구사항들을 충족하기 위한 준비단계
+
+`1번째 준비: 설계 반영` 
 
 App.js에 header, article, footer의 구조를 나타내고, article에 SearchBar, Container, Country, Button, ModalBox가 다 잘 Mount된다는 것을 확인하고, css가 동작하는지만 확인 하였다. 
 
 1번째 준비과정을 마치고 `Add skeleton component` 커밋을 남겼다. 
 
-2번째 준비: Redux연동
+`2번째 준비: Redux연동`
+
+```shell
+npm i -D redux react-redux
+```
+이후에 reducer, store와 같은 내용은 예제 깃헙과 이전에 뜨문뜨문 봐왔던 프로젝트 구조와 기억에 의존하여 react와 redux를 연동하였다.
+
+2번째 준비과정을 마치고 `Link react and redux` 커밋을 남겼다.
+
+
 
 3번째 준비: Redux-middlware를 통한 네트워크 통신
 
 4번째 준비: 통신을 통해 가져온 값으로 컴포넌트 상태 변경
 
 
-## 참고자료
+# 참고자료
+
 > With Google and Internet, you're standing on the shoulders of giants
 
 [Create react project without CRA in 10 min](https://www.youtube.com/watch?v=TkMpKCJEFB4)
@@ -161,3 +173,7 @@ App.js에 header, article, footer의 구조를 나타내고, article에 SearchBa
 [리액트 웹팩으로 개발환경 구축하기](https://velog.io/@_uchanlee/%EB%A6%AC%EC%95%A1%ED%8A%B8-%EC%9B%B9%ED%8C%A9%EC%9C%BC%EB%A1%9C-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0without-CRA)
 
 [CRA 없이 리액트 앱 시작하기](https://lsy26499.tistory.com/68)
+
+[react-redux 강의](https://www.youtube.com/watch?v=Cwwsv_OaWhM)
+
+[react-redux 예제](https://github.com/gothinkster/react-redux-realworld-example-app/blob/master/src/reducer.js)

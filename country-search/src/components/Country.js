@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import Button from './Button'
 
 const Country = (props) =>{
     return (
@@ -8,6 +9,10 @@ const Country = (props) =>{
             {props.callingCodes}
             {props.capital}
             {props.region}
+            <Button
+                text='Delete'
+                onClick={() => (alert('clicked it'))}
+            />
         </div>
     )
 }

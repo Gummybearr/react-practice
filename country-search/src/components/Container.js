@@ -1,8 +1,10 @@
-import React from 'react';
+import React from 'react'
 
 const Container = (props) =>{
     return (
-        <div>
+        <div onClick={() => {
+            console.log('container ok');
+        }}>
             {props.content}
         </div>
     )

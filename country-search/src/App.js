@@ -1,10 +1,10 @@
 import React from 'react'
 
-import SearchBar from './component/SearchBar';
-import Country from './component/Country';
-import Container from './component/Container';
-import Button from './component/Button';
-import ModalBox from './component/ModalBox';
+import SearchBar from './components/SearchBar';
+import Country from './components/Country';
+import Container from './components/Container';
+import Button from './components/Button';
+import ModalBox from './components/ModalBox';
 
 function App(){
     return <div>
@@ -30,7 +30,7 @@ function App(){
                 <Button text="Add to List"/>
             </>
         }/>
-        
+
         <footer>2021</footer>
     </div>
 }
