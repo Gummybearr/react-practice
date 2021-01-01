@@ -2,7 +2,7 @@ import React from 'react'
 
 import SearchBar from './components/SearchBar';
 import Country from './components/Country';
-import Container from './components/Container';
+import CountryContainer from './components/CountryContainer';
 import Button from './components/Button';
 import ModalBox from './components/ModalBox';
 
@@ -12,7 +12,7 @@ function App(){
 
         <article>
             <SearchBar/>
-            <Container
+            <CountryContainer
                 content={<Country
                     name="Korea (Republic of)"
                     alpha2Code="KR"

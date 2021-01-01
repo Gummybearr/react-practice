@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import axios from 'axios'
 
 import './SearchBar.css';
 
@@ -18,7 +19,8 @@ const SearchBar = (props) => {
 export default connect(null, (dispatch) => {
     return {
         onClick: () => {
-            dispatch({type:'CHANGE_MODE', mode: 'WELCOME'})
+            const result = axios.get('https://restcountries.eu/rest/v2/all?fields=alpha2Code;capital;name;region;callingCodes')
+            .then((res)=> (dispatch({type: 'FETCH_DATA', data: res})))
         }
     }
 })(SearchBar);

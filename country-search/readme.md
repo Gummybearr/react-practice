@@ -157,9 +157,14 @@ npm i -D redux react-redux
 
 2번째 준비과정을 마치고 `Link react and redux` 커밋을 남겼다.
 
+`3번째 준비: Redux-middlware를 통한 네트워크 통신`
+```shell
+npm i -D axios redux-thunk
+```
 
+Redux-middleware는 사용해본적이 없던 터라, 공부가 조금 필요했다. 다행히 Redux-middleware를 이용한 네트워크는 기존의 ajax와 크게 다르지 않았고, Axios와 같은 라이브러리 또한 자유롭게 사용할 수 있었다. redux의 reducer로 요청이 오면 요청을 통해 객체들으 상태를 바꾸기 이전에 middleware와 연동된 동작을 미리 수행한다는 것이 핵심인데, 이를 통해 기존에 middleware를 사용하지 않는 것에 비해 조금 더 객체들의 상태를 바꿔줄 수 있다는 장점이 있어보였다.
 
-3번째 준비: Redux-middlware를 통한 네트워크 통신
+3번째 준비과정을 마치고 `Add get request with redux middleware` 커밋을 남겼다.
 
 4번째 준비: 통신을 통해 가져온 값으로 컴포넌트 상태 변경
 
@@ -177,3 +182,5 @@ npm i -D redux react-redux
 [react-redux 강의](https://www.youtube.com/watch?v=Cwwsv_OaWhM)
 
 [react-redux 예제](https://github.com/gothinkster/react-redux-realworld-example-app/blob/master/src/reducer.js)
+
+[redux middleware get request](https://www.youtube.com/watch?v=tcCS4mGAq7Q)

@@ -26,7 +26,7 @@ const initState = {
 
 export default (state=initState, action) => {
     console.log(state);
-    if(action.type==='CHANGE_MODE'){
+    if(action.type==='FETCH_DATA'){
         alert('this works');
         return {...state, mode: action.mode}
     }

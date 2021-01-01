@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { connect } from 'react-redux'
 
-const Container = (props) =>{
+
+
+const CountryContainer = (props) =>{
     return (
         <div onClick={() => {
             console.log('container ok');
@@ -10,4 +13,4 @@ const Container = (props) =>{
     )
 }
 
-export default Container;
+export default CountryContainer;
