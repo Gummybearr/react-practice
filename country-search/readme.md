@@ -167,13 +167,26 @@ Redux-middleware는 사용해본적이 없던 터라, 공부가 조금 필요했
 
 8번을 마치고 `Add GET request with redux middleware` 커밋을 남겼다.
 
-### 📝 4번
+### 📝 4번(1/2)
 
-우선, 통신을 통해 가져온 값으로 컴포넌트 상태를 변경하기 위해서는 mapStateToProps을 사용하여 객체들이 redux의 상태변화를 subscribe하도록 해야 한다. 또, 객체들이 처음 생성될때만 렌더가 되도록 해야 한다. React hook을 사용하려면 useState말고 useEffect를 사용하여 해당 로직을 구현할 수 있다.
+`1번째 준비: 통신을 통해 가져온 값으로 컴포넌트 업데이트`
 
-해당 과정을 끝내고 `Update screen after search button click` 커밋을 남겼다.
+mapStateToProps을 사용하여 객체들이 redux의 상태변화를 subscribe하도록 해야 한다. 또, 객체들이 처음 생성될때만 렌더가 되도록 해야 한다. React hook을 사용하려면 useState말고 useEffect를 사용하여 해당 로직을 구현할 수 있다.
+
+1번째 준비과정을 끝내고 `Update screen after search button click` 커밋을 남겼다.
+
+`2번째 준비: form 형식을 통해 검색 구체화`
+
+그냥 검색을 아무렇게나 하게 해도 되지만, 그렇게 될 경우 구현 로직이 다소 복잡해질 수 있다. 어떤 필드에 입력값을 대조해야 하는지 알 수 없기 때문이다. 그렇기 때문에 form 형식을 써서 검색을 구체화할 수 있도록 하였다. 
+
+2번째 준비과정을 끝내고 `Add form style in search` 커밋을 남겼다.
 
 ### 📝 5번
+4번을 하는 과정 중에서 redux에 저장된 나라 정보를 업데이트하는 dispatcher와 이와 연결된 reducer를 추가해주는 것으로 해결할 수 있다. 
+
+5번을 끝내고 `Add remove row function` 커밋을 남겼다.
+
+
 
 # 참고자료
 
@@ -190,3 +203,5 @@ Redux-middleware는 사용해본적이 없던 터라, 공부가 조금 필요했
 [react-redux 예제](https://github.com/gothinkster/react-redux-realworld-example-app/blob/master/src/reducer.js)
 
 [redux middleware get request](https://www.youtube.com/watch?v=tcCS4mGAq7Q)
+
+[redux form](https://www.youtube.com/watch?v=l_Yp8_SuGgU)

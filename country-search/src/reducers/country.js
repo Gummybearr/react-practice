@@ -13,5 +13,11 @@ export default (state=initState, action='') => {
         console.log({...state})
         return {...state}
     }
+    // if(action.type==='DELETE_COUNTRY'){
+    //     console.log(action?.payload)
+    //     const countries = state.countries.filter((country)=> (country.name===action.payload?null:country))
+    //     state.countries = countries
+    //     return {...state}
+    // }
     return state;
 }

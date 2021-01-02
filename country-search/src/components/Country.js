@@ -1,20 +1,36 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import Button from './Button'
+
+import './Country.css'
 
 const Country = (props) =>{
     return (
-        <div>
-            {props.name}
-            {props.alpha2Code}
-            {props.callingCodes}
-            {props.capital}
-            {props.region}
-            <Button
-                text='Delete'
-                onClick={() => (alert('clicked it'))}
-            />
+        <div className="divTableRow">
+            <div className="divTableCell">{props.name}</div>
+            <div className="divTableCell">{props.alpha2Code}</div>
+            <div className="divTableCell">{props.callingCodes}</div>
+            <div className="divTableCell">{props.capital}</div>
+            <div className="divTableCell">{props.region}</div>
+            {props.action==='delete'?
+                <div className='divTableCell'>
+                    <Button
+                        text='Delete'
+                        onClick={() => props.deleteCountry(props)}
+                    />
+                </div>:null
+            }
         </div>
     )
 }
 
-export default Country;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteCountry: (props) => {
+            dispatch({type: 'DELETE_COUNTRY', payload: props.name})
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Country);
