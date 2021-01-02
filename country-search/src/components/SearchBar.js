@@ -6,7 +6,7 @@ import axios from 'axios'
 import './SearchBar.css'
 
 const SearchBar = (props) => {
-
+  console.log(props.searchMode)
   return (<div>
     <Formik 
       initialValues={{
@@ -18,7 +18,7 @@ const SearchBar = (props) => {
       }}
       onSubmit={(values, {setSubmitting, resetForm}) => {
         resetForm()
-        props.onClick(values)
+        props.onClick({'values': values, 'searchMode': props.searchMode})
       }}
     >
       {({
@@ -94,12 +94,10 @@ function stringSubMatch(country1, country2){
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (props) => {
-      console.log(props)
       const result = axios.get('https://restcountries.eu/rest/v2/all?fields=alpha2Code;capital;name;region;callingCodes')
       .then((res)=> {
-        let countries = res.data.filter((country)=> (stringSubMatch(country, props)?country:null))
-        console.log(countries)
-        dispatch({type: 'SEARCH_DATA', payload: {search: props, countries: countries}})
+        let countries = res.data.filter((country)=> (stringSubMatch(country, props.values)?country:null))
+        dispatch({type: 'SEARCH_DATA', payload: {search: props.values, countries: countries, searchMode: props.searchMode}})
       })
     }
   }

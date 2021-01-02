@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 import Button from './Button'
 
@@ -19,7 +20,12 @@ const Country = (props) =>{
                         text='Delete'
                         onClick={() => props.deleteCountry(props)}
                     />
-                </div>:null
+                </div>:<div className='divTableCell'>
+                    <Button
+                        text='Add'
+                        onClick={()=> props.addCountry(props)}
+                    />
+                </div>
             }
         </div>
     )
@@ -29,6 +35,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         deleteCountry: (props) => {
             dispatch({type: 'DELETE_COUNTRY', payload: props.name})
+        },
+        addCountry: (props) => {
+            dispatch({type:'ADD_COUNTRY', payload: props})
         }
     }
 }

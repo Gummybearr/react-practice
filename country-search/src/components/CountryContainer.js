@@ -5,6 +5,7 @@ import Country from './Country';
 
 const CountryContainer = (props) =>{
     let countries = props?.countries
+    let volatileCountries = props?.volatileCountries
     let sort = props?.sort
     return (
         <div className="divTable">
@@ -37,15 +38,26 @@ const CountryContainer = (props) =>{
                     </div>
                     <div className="divTableCell">Action</div>
                 </div>
-                {countries.map((country)=> (<Country
-                    key={country.name}
-                    name={country.name}
-                    alpha2Code={country.alpha2Code}
-                    callingCodes={country.callingCodes}
-                    capital={country.capital}
-                    region={country.region}
-                    action='delete'
-                />))}
+                {props.searchMode==='reset'?
+                    countries.map((country)=> (<Country
+                        key={country.name}
+                        name={country.name}
+                        alpha2Code={country.alpha2Code}
+                        callingCodes={country.callingCodes}
+                        capital={country.capital}
+                        region={country.region}
+                        action='delete'
+                    />)):volatileCountries.map((country)=> (<Country
+                        key={country.name}
+                        name={country.name}
+                        alpha2Code={country.alpha2Code}
+                        callingCodes={country.callingCodes}
+                        capital={country.capital}
+                        region={country.region}
+                        action='add'
+                    />))
+                }
+                
             </div>
         </div>
     )
@@ -53,9 +65,11 @@ const CountryContainer = (props) =>{
 
 const mapStateToProps = (state) => {
     return {
-    countries: state.searchCountries.countries,
-    sort: state.searchCountries.sort
-}}
+            countries: state.searchCountries.countries,
+            volatileCountries: state.searchCountries.volatileCountries,
+            sort: state.searchCountries.sort
+        }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {

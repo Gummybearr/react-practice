@@ -60,6 +60,7 @@ npm i react react-dom //리액트, 돔 접근 라이브러리 설치
 npm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin //모듈 번들러, 프론트 서버, html지원 플러그인 설치
 npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader @babel/preset-react css-loader node-sass sass-loader style-loader //크로스브라우징을 위한 트랜스파일러 및 스타일 적용 라이브러리 설치
 ```
+바벨을 이용하면 <b>📝 추가 구현사항 3번</b> 또한 해결할 수 있다
 
 ```js
 // webpack.config.js 작성
@@ -167,11 +168,21 @@ Redux-middleware는 사용해본적이 없던 터라, 공부가 조금 필요했
 
 8번을 마치고 `Add GET request with redux middleware` 커밋을 남겼다.
 
-### 📝 7번(1/2)
+### 📝 7번
 
 통신을 통해 가져온 값으로 컴포넌트를 업데이트하는 과정이 필요한데, 그러기 위해서는 redux에 데이터를 저장해야 한다. 또, mapStateToProps을 사용하여 객체들이 redux의 상태변화를 subscribe하도록 해야 한다. 또, 객체들이 처음 생성될때만 렌더가 되도록 해야 한다. React hook을 사용하려면 useState말고 useEffect를 사용하여 해당 로직을 구현할 수 있다.
 
 해당 과정을 끝내고 `Update screen after search button click` 커밋을 남겼다.
+
+```javascript
+const initState = {
+    type: 'STANDBY',
+    search: '',
+    sort: {field: 'name', method: 'ASCENDING'},
+    countries: []
+}
+
+```
 
 ### 📝 4번
 
@@ -181,7 +192,7 @@ Redux-middleware는 사용해본적이 없던 터라, 공부가 조금 필요했
 
 커밋을 하고 보니 여전히 구현 로직이 다소 복잡해질 수 있음을 발견했다. 입력한 값들을 redux에 전달하거나, middleware에서 처리해야 하는데 값을 보내는 방식이 모든 객체에 일일이 접근해서 값을 얻어오는 방식으로 구현될 것이었기 때문이었다. 
 
-react에서 사용할 수 있는 form 라이브러리 중 Formik을 사용하였다. redux-form를 먼저 사용하려고 했으나, 독스가 다소 덜 정돈된 느낌을 받아서 예제가 개인적인 선호에 맞았던 Formik을 사용했다. 
+react에서 사용할 수 있는 form 라이브러리 중 ( <b>📝 추가 구현사항 2번 </b>)Formik을 사용하였다. redux-form를 먼저 사용하려고 했으나, 독스가 다소 덜 정돈된 느낌을 받아서 예제가 개인적인 선호에 맞았던 Formik을 사용했다. 
 
 검색의 경우 우선 모든 나라를 받아 온 뒤 검색 조건에 맞게 나라들을 필터링해주었다. 간결하게 함수를 짜고 싶었지만, 현재로서는 이정도에 만족해야 할 것 같다.
 
@@ -264,6 +275,13 @@ const mapDispatchToProps = (dispatch) => {
 
 3번을 끝내고 `Add sort function` 커밋을 남겼다.
 
+### 📝 6번
+
+버튼을 통해 별도의 창을 보이게 할 수 있고, 그 창에서 새로운 검색과 추가를 구현하여 해결할 수 있다. 
+
+기존에 구현한 검색창과 나라들을 담는 컨테이너 컴포넌트를 재사용하여 구현을 어렵지 않게 할 수 있었다.
+
+6번을 끝내고 `Add country add function` 커밋을 남겼다.
 
 # 예상 질문과 대답
 
