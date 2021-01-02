@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "react-app-polyfill": "^2.0.0"
+  }
+}
