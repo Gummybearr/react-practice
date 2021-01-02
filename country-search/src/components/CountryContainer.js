@@ -32,12 +32,4 @@ const CountryContainer = (props) =>{
 
 const mapStateToProps = (state) => ({countries: state.fetchCountries.countries})
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        list: () => {
-            dispatch({type: 'GET_DATA', payload: []})
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CountryContainer);
+export default connect(mapStateToProps, null)(CountryContainer);

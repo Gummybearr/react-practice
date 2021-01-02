@@ -4,14 +4,10 @@ const initState = {
 }
 
 export default (state=initState, action='') => {
-    if(action.type==='FETCH_DATA'){
-        state.type = 'FETCH_DATA'
+    if(action.type==='SEARCH_DATA'){
+        state.type = 'SEARCH_DATA'
         state.countries = action?.payload
         return {...state, countries: action.payload}
-    }
-    if(action.type==='GET_DATA'){
-        console.log({...state})
-        return {...state}
     }
     if(action.type==='DELETE_COUNTRY'){
         console.log(action?.payload)

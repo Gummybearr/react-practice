@@ -167,19 +167,47 @@ Redux-middleware는 사용해본적이 없던 터라, 공부가 조금 필요했
 
 8번을 마치고 `Add GET request with redux middleware` 커밋을 남겼다.
 
-### 📝 4번(1/2)
+### 📝 7번(1/2)
 
-`1번째 준비: 통신을 통해 가져온 값으로 컴포넌트 업데이트`
+통신을 통해 가져온 값으로 컴포넌트를 업데이트하는 과정이 필요한데, 그러기 위해서는 redux에 데이터를 저장해야 한다. 또, mapStateToProps을 사용하여 객체들이 redux의 상태변화를 subscribe하도록 해야 한다. 또, 객체들이 처음 생성될때만 렌더가 되도록 해야 한다. React hook을 사용하려면 useState말고 useEffect를 사용하여 해당 로직을 구현할 수 있다.
 
-mapStateToProps을 사용하여 객체들이 redux의 상태변화를 subscribe하도록 해야 한다. 또, 객체들이 처음 생성될때만 렌더가 되도록 해야 한다. React hook을 사용하려면 useState말고 useEffect를 사용하여 해당 로직을 구현할 수 있다.
+해당 과정을 끝내고 `Update screen after search button click` 커밋을 남겼다.
 
-1번째 준비과정을 끝내고 `Update screen after search button click` 커밋을 남겼다.
-
-`2번째 준비: form 형식을 통해 검색 구체화`
+### 📝 4번
 
 그냥 검색을 아무렇게나 하게 해도 되지만, 그렇게 될 경우 구현 로직이 다소 복잡해질 수 있다. 어떤 필드에 입력값을 대조해야 하는지 알 수 없기 때문이다. 그렇기 때문에 form 형식을 써서 검색을 구체화할 수 있도록 하였다. 
 
-2번째 준비과정을 끝내고 `Add form style in search` 커밋을 남겼다.
+이를 끝내고 `Add form style in search` 커밋을 남겼다.
+
+커밋을 하고 보니 여전히 구현 로직이 다소 복잡해질 수 있음을 발견했다. 입력한 값들을 redux에 전달하거나, middleware에서 처리해야 하는데 값을 보내는 방식이 모든 객체에 일일이 접근해서 값을 얻어오는 방식으로 구현될 것이었기 때문이었다. 
+
+react에서 사용할 수 있는 form 라이브러리 중 Formik을 사용하였다. redux-form를 먼저 사용하려고 했으나, 독스가 다소 덜 정돈된 느낌을 받아서 예제가 개인적인 선호에 맞았던 Formik을 사용했다. 
+
+검색의 경우 우선 모든 나라를 받아 온 뒤 검색 조건에 맞게 나라들을 필터링해주었다. 간결하게 함수를 짜고 싶었지만, 현재로서는 이정도에 만족해야 할 것 같다.
+
+```javascript
+function stringSubMatch(country1, country2){
+  let flag = {
+    name: false,
+    alpha2Code: false,
+    callingCodes: false,
+    capital: false,
+    region: false
+  }
+  for(let i in country2){
+    if(!country2[i]){
+      flag[i]=true
+    } else{
+      if(country1[i]?.toLowerCase().includes(country2[i]?.toLowerCase())){
+        flag[i] = true
+      }
+    }
+  }
+  return flag.name&flag.alpha2Code&flag.callingCodes&flag.capital&flag.region
+}
+```
+
+4번을 끝내고 `Add Search function` 커밋을 남겼다.
 
 ### 📝 5번
 4번을 하는 과정 중에서 redux에 저장된 나라 정보를 업데이트하는 dispatcher와 이와 연결된 reducer를 추가해주는 것으로 해결할 수 있다. 
