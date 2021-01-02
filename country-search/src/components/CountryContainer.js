@@ -1,29 +1,31 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 
+import Country from './Country';
+
 const CountryContainer = (props) =>{
-    let list = [];
-    console.log('new update');
+    let countries = props?.countries
     return (
-        <div onClick={() => {
-            console.log(props);
-        }}>
-            {props.content}
+        <div>          
+            {countries.map((country)=> (<Country
+                key={country.name}
+                name={country.name}
+                alpha2Code={country.alpha2Code}
+                callingCodes={country.callingCodes}
+                capital={country.capital}
+                region={country.region}
+            />))}
         </div>
     )
 }
 
-const mapStateToProps = (state) => {
-    console.log(state);
-    return {
-        data: state.content
-    }
-}
+const mapStateToProps = (state) => ({countries: state.fetchCountries.countries})
 
 const mapDispatchToProps = (dispatch) => {
-    console.log(dispatch)
     return {
-        fetchCountries: () => dispatch()
+        list: () => {
+            dispatch({type: 'GET_DATA', payload: []})
+        }
     }
 }
 

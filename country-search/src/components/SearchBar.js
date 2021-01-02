@@ -6,8 +6,6 @@ import './SearchBar.css';
 
 const SearchBar = (props) => {
 
-    // const clickSearch = () => {console.log('ok')}
-
     return <div>
         searchBar
         <div id="ok" onClick={props.onClick}>

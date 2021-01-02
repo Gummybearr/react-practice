@@ -12,15 +12,7 @@ function App(){
 
         <article>
             <SearchBar/>
-            <CountryContainer
-                content={<Country
-                    name="Korea (Republic of)"
-                    alpha2Code="KR"
-                    callingCodes="82"
-                    capital="Seoul"
-                    region="Asia"
-                />}
-            />
+            <CountryContainer/>
             <Button text="Add Countries"/>
         </article>
 

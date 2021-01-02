@@ -169,7 +169,9 @@ Redux-middleware는 사용해본적이 없던 터라, 공부가 조금 필요했
 
 ### 📝 4번
 
-우선, 통신을 통해 가져온 값으로 컴포넌트 상태를 변경하기 위해서는 Subscribe 개념을 적용해야 한다. 
+우선, 통신을 통해 가져온 값으로 컴포넌트 상태를 변경하기 위해서는 mapStateToProps을 사용하여 객체들이 redux의 상태변화를 subscribe하도록 해야 한다. 또, 객체들이 처음 생성될때만 렌더가 되도록 해야 한다. React hook을 사용하려면 useState말고 useEffect를 사용하여 해당 로직을 구현할 수 있다.
+
+해당 과정을 끝내고 `Update screen after search button click` 커밋을 남겼다.
 
 ### 📝 5번
 
