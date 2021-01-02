@@ -99,7 +99,7 @@ const mapDispatchToProps = (dispatch) => {
       .then((res)=> {
         let countries = res.data.filter((country)=> (stringSubMatch(country, props)?country:null))
         console.log(countries)
-        dispatch({type: 'SEARCH_DATA', payload: countries})
+        dispatch({type: 'SEARCH_DATA', payload: {search: props, countries: countries}})
       })
     }
   }

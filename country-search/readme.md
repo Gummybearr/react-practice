@@ -210,10 +210,72 @@ function stringSubMatch(country1, country2){
 4번을 끝내고 `Add Search function` 커밋을 남겼다.
 
 ### 📝 5번
+
 4번을 하는 과정 중에서 redux에 저장된 나라 정보를 업데이트하는 dispatcher와 이와 연결된 reducer를 추가해주는 것으로 해결할 수 있다. 
 
 5번을 끝내고 `Add remove row function` 커밋을 남겼다.
 
+### 📝 3번
+
+각 항목별로 정렬이 되어야 한다.
+
+오름차순과 내림차순이 토글되면서 적용되도록 구현한다. 
+
+```javascript
+// onSort가 정렬 파트
+const mapDispatchToProps = (dispatch) => {
+    return {
+        list: () => {
+            dispatch({type: 'GET_DATA', payload: []})
+        },
+        onSort: (props) => {
+            let field = ''
+            let method = ''
+            let countries = props.countries.map((country)=>(country))
+
+            if(props.sort.field==props.target){
+                method = props.sort.method==='ASCENDING'?'DESCENDING':'ASCENDING'
+            } else{
+                method='ASCENDING'
+            }
+
+            field = props.target
+
+            if(countries?.length){
+                countries.sort((a,b)=> {
+                    if(method==='ASCENDING'){
+                        return a[field]>b[field]?1:-1
+                    } else{
+                        return a[field]<b[field]?1:-1
+                    }
+                })
+            }
+
+            dispatch({type: 'SORT_DATA', payload: 
+                {
+                    sort: {'field': field, 'method': method},
+                    countries: countries
+                }
+            })
+        }
+    }
+}
+```
+
+3번을 끝내고 `Add sort function` 커밋을 남겼다.
+
+
+# 예상 질문과 대답
+
+<details>
+    <summary>왜 테이블을 div로 구현하였나요?</summary>
+    table이 성능상 별로 좋지 않기 때문에 div로 table을 대체했습니다.
+</details>
+
+<details>
+    <summary>왜 비즈니스 로직을 실행한 이휴에 reducer에 상태를 넘기나요?</summary>
+    reducer는 공유자원으로 사용되고 있고, 따라서 접점이 많기 때문에 부하를 줄이기 위해 그렇게 했습니다.
+</details>
 
 
 # 참고자료
@@ -233,3 +295,7 @@ function stringSubMatch(country1, country2){
 [redux middleware get request](https://www.youtube.com/watch?v=tcCS4mGAq7Q)
 
 [redux form](https://www.youtube.com/watch?v=l_Yp8_SuGgU)
+
+[formik]()
+
+[div table generator](https://divtable.com/generator/) 
