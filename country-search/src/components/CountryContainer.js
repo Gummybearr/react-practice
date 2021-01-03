@@ -7,32 +7,33 @@ const CountryContainer = (props) =>{
     let countries = props?.countries
     let volatileCountries = props?.volatileCountries
     let sort = props?.sort
+    let searchMode = props.searchMode
     return (
         <div className="divTable">
             <div className="divTableBody">
                 <div className="divTableRow">
                     <div className="divTableCell" onClick={
-                        () => (props.onSort({sort: sort, target: 'name', countries: countries}))}
+                        () => (props.onSort({sort: sort, target: 'name', countries: countries, volatileCountries: volatileCountries, searchMode: searchMode}))}
                     >
                         Name
                     </div>
                     <div className="divTableCell" onClick={
-                        () => (props.onSort({sort: sort, target: 'alpha2Code', countries: countries}))}
+                        () => (props.onSort({sort: sort, target: 'alpha2Code', countries: countries, volatileCountries: volatileCountries, searchMode: searchMode}))}
                     >
                         Alpha2Code
                     </div>
                     <div className="divTableCell" onClick={
-                        () => (props.onSort({sort: sort, target: 'callingCodes', countries: countries}))}
+                        () => (props.onSort({sort: sort, target: 'callingCodes', countries: countries, volatileCountries: volatileCountries, searchMode: searchMode}))}
                     >
                         CallingCodes
                     </div>
                     <div className="divTableCell" onClick={
-                        () => (props.onSort({sort: sort, target: 'capital', countries: countries}))}
+                        () => (props.onSort({sort: sort, target: 'capital', countries: countries, volatileCountries: volatileCountries, searchMode: searchMode}))}
                     >
                         Capital
                     </div>
                     <div className="divTableCell" onClick={
-                        () => (props.onSort({sort: sort, target: 'region', countries: countries}))}
+                        () => (props.onSort({sort: sort, target: 'region', countries: countries, volatileCountries: volatileCountries, searchMode: searchMode}))}
                     >
                         Region
                     </div>
@@ -80,6 +81,8 @@ const mapDispatchToProps = (dispatch) => {
             let field = ''
             let method = ''
             let countries = props.countries.map((country)=>(country))
+            let volatileCountries = props.volatileCountries.map((country)=> (country))
+            let searchMode = props.searchMode
 
             if(props.sort.field==props.target){
                 method = props.sort.method==='ASCENDING'?'DESCENDING':'ASCENDING'
@@ -89,20 +92,33 @@ const mapDispatchToProps = (dispatch) => {
 
             field = props.target
 
-            if(countries?.length){
-                countries.sort((a,b)=> {
-                    if(method==='ASCENDING'){
-                        return a[field]>b[field]?1:-1
-                    } else{
-                        return a[field]<b[field]?1:-1
-                    }
-                })
+            if(searchMode==='reset'){
+                if(countries?.length){
+                    countries.sort((a,b)=> {
+                        if(method==='ASCENDING'){
+                            return a[field]>b[field]?1:-1
+                        } else{
+                            return a[field]<b[field]?1:-1
+                        }
+                    })
+                }
+            } else{
+                if(volatileCountries?.length){
+                    volatileCountries.sort((a,b)=> {
+                        if(method==='ASCENDING'){
+                            return a[field]>b[field]?1:-1
+                        } else{
+                            return a[field]<b[field]?1:-1
+                        }
+                    })
+                }
             }
 
             dispatch({type: 'SORT_DATA', payload: 
                 {
                     sort: {'field': field, 'method': method},
-                    countries: countries
+                    countries: countries,
+                    volatileCountries: volatileCountries
                 }
             })
         }

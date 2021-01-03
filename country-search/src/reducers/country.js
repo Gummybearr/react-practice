@@ -41,6 +41,7 @@ export default (state=initState, action='') => {
         state.type='SORT_DATA'
         state.sort = action.payload.sort
         state.countries = action.payload.countries
+        state.volatileCountries = action.payload.volatileCountries
         return {...state}
     }
     if(action.type==='TOGGLE_DROPDOWNBOX'){
