@@ -2,6 +2,18 @@
 
 나라 정보(코드, 수도, 이름, 대륙, 국가 전화번호)를 GET 으로 가져와 정보를 리스팅 해주는 페이지.
 
+# 실행 방법
+로컬에서 실행
+```shell
+git clone https://github.com/Gummybearr/react-practice.git
+cd react-practice/country-search
+npm install
+npm run dev
+```
+
+웹으로 실행
+`http://35.222.16.183:8080/` 주소로 접속
+
 # Server 
 Data URL
 https://restcountries.eu/rest/v2/all?fields=alpha2Code;capital;name;region;callingCodes
