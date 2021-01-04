@@ -8,12 +8,14 @@ import './Country.css'
 
 const Country = (props) =>{
     return (
+        //made table using div tag for performance issue
         <div className="divTableRow">
             <div className="divTableCell">{props.name}</div>
             <div className="divTableCell">{props.alpha2Code}</div>
             <div className="divTableCell">{props.callingCodes}</div>
             <div className="divTableCell">{props.capital}</div>
             <div className="divTableCell">{props.region}</div>
+            {/* ternary operator to generate different buttons*/}
             {props.action==='delete'?
                 <div className='divTableCell'>
                     <Button

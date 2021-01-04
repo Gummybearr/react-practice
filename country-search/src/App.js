@@ -9,8 +9,12 @@ function App(){
         <header>My Countries</header>
 
         <article>
+            {/* search bar */}
             <SearchBar searchMode='reset'/>
+            {/* container that countains searched & added countries */}
             <CountryContainer searchMode='reset'/>
+            {/* button that toggles box that contains searchbar and country container 
+            so it can add countries individually */}
             <DropDownBox />
         </article>
 

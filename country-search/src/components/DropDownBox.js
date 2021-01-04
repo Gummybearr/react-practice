@@ -10,7 +10,9 @@ const DropDownBox = (props) => {
         <div>
             <div>Click <button onClick={() => {props.toggleDropDownBoxFlag(dropDownBoxFlag)}}>HERE</button> to  
             {dropDownBoxFlag?' close this drop-down box':' add individual countries to your list'}</div>
+            {/* ternary operator to toggle elements */}
             {dropDownBoxFlag?
+            //used fragment to keep from generating unnecessary div tag
                 <>
                     <SearchBar searchMode='add'/>
                     <CountryContainer searchMode='add'/>

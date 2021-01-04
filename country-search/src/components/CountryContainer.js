@@ -39,6 +39,7 @@ const CountryContainer = (props) =>{
                     </div>
                     <div className="divTableCell">Action</div>
                 </div>
+                {/* ternary operator to save different data based on search mode */}
                 {props.searchMode==='reset'?
                     countries.map((country)=> (<Country
                         key={country.name}
@@ -64,6 +65,7 @@ const CountryContainer = (props) =>{
     )
 }
 
+//needed to update valeus of countires
 const mapStateToProps = (state) => {
     return {
             countries: state.searchCountries.countries,
@@ -84,16 +86,19 @@ const mapDispatchToProps = (dispatch) => {
             let volatileCountries = props.volatileCountries.map((country)=> (country))
             let searchMode = props.searchMode
 
+            //if clicked field is equal, it will toggle between ascending and descending
+            //else -> it will be changed/kept ascending
             if(props.sort.field==props.target){
                 method = props.sort.method==='ASCENDING'?'DESCENDING':'ASCENDING'
             } else{
                 method='ASCENDING'
             }
-
+            //no need to set sorting field in if else statement, so changed it here
             field = props.target
-
+            
             if(searchMode==='reset'){
                 if(countries?.length){
+                    //custom sorting for ascending and descending
                     countries.sort((a,b)=> {
                         if(method==='ASCENDING'){
                             return a[field]>b[field]?1:-1
@@ -113,7 +118,7 @@ const mapDispatchToProps = (dispatch) => {
                     })
                 }
             }
-
+            //sends sorted data to reducer
             dispatch({type: 'SORT_DATA', payload: 
                 {
                     sort: {'field': field, 'method': method},

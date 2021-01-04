@@ -8,6 +8,7 @@ import './SearchBar.css'
 const SearchBar = (props) => {
   console.log(props.searchMode)
   return (<div>
+    {/* using Formik to capture data at once */}
     <Formik 
       initialValues={{
         name: '', 
@@ -18,6 +19,8 @@ const SearchBar = (props) => {
       }}
       onSubmit={(values, {setSubmitting, resetForm}) => {
         resetForm()
+        //will enable dispatcher with searched values and searchMod
+        //searchMode will be 'reset' for main search bar and 'add' for sub-search bar 
         props.onClick({'values': values, 'searchMode': props.searchMode})
       }}
     >
@@ -32,7 +35,7 @@ const SearchBar = (props) => {
             type="text"
             name="name"
             placeholder="Name"
-            onChange={handleChange}
+            onChange={handleChange} //gets triggered when user types/edits values in input tag
             value={values.name}
           />
           <input
@@ -64,6 +67,7 @@ const SearchBar = (props) => {
             onChange={handleChange}
             value={values.region}
           />
+          {/* It doesn't refresh the page after submitting, but dedicated function will be triggered */}
           <button type="submit" disabled={isSubmitting}>Submit</button>
         </form>
       )}
@@ -71,6 +75,8 @@ const SearchBar = (props) => {
   </div>)
 }
 
+//declared this function to see if there is complete/partial match between countries
+//first parameter should be the country in the server and the second parameter should be the searched values
 function stringSubMatch(country1, country2){
   let flag = {
     name: false,
@@ -94,9 +100,12 @@ function stringSubMatch(country1, country2){
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (props) => {
+      //firstly gets data from the server
       const result = axios.get('https://restcountries.eu/rest/v2/all?fields=alpha2Code;capital;name;region;callingCodes')
       .then((res)=> {
+        //then filter countries using custom function
         let countries = res.data.filter((country)=> (stringSubMatch(country, props.values)?country:null))
+        //and then dispatches it to reducer
         dispatch({type: 'SEARCH_DATA', payload: {search: props.values, countries: countries, searchMode: props.searchMode}})
       })
     }
